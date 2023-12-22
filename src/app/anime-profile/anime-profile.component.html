@@ -1,0 +1,81 @@
+<style>
+  body {
+    display: flex;
+    padding-top: 4rem;
+      /* align-items: center; 
+    justify-content: center;  */
+    height: 100vh;
+    
+    margin: 0;
+    background: url(https://images.unsplash.com/photo-1586020435958-8298e2cb5f64?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  }
+  hr.class-2 {
+        border-top: 3px solid rgb(249, 249, 253);
+    }
+</style>
+
+<body>
+<div *ngIf="anime" class="container-fluid" style="color: #1976d2;">
+    <br>
+    <button class="btn btn-success btn-sm" (click)="goBack()">Go back</button>
+    <hr class="class-2" />
+    <div class="row" >
+      <!-- Display the Poster here  -->
+      <div class="col-sm-3">
+        <figure class="figure">
+          <img src="{{ anime.iconUrl }}" class="figure-img img-fluid rounded" alt="..." style="max-height: 469px;">
+        </figure>
+      </div>
+        
+        <!-- Anime Profile -->
+      <div class="col-sm-9"  >
+        <div class="card" style="background: url(https://img.freepik.com/free-vector/cool-blue-parchment_53876-86280.jpg?w=996&t=st=1701680509~exp=1701681109~hmac=9119bb6e683782b047af81976d1efbebb667fc6ac2d4890fd5d4f4b2f35bc332);">
+          
+          <div class="card-header">
+            <h3 class="card-title">{{anime.name | uppercase }}</h3>
+          </div>
+  
+          <div class="card-body">
+            <h5 class="card-title">Type : {{anime.type | titlecase}}</h5>
+            <div *ngIf="anime.status =='completed'; else elseBlock">
+              <h5 class="card-title">Status : <span class="badge badge-success" style="color: green;">{{anime.status}}</span></h5>
+            </div>
+              
+            <ng-template #elseBlock>
+              <h5 class="card-title">Status : <span class="badge badge-warning" style="color: red;">{{anime.status}}</span></h5>
+            </ng-template>
+              
+            <h5 class="card-title">Description :</h5>
+            <p class="card-text">{{ anime.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <hr class="class-2" />
+      <!-- Comments box -->
+    <div class="form-group row container">
+      <label class="col-sm-2 col-form-label" for="comment">Enter your comment :</label>
+      <div class="col-sm-9">
+        <input #comment
+               (keyup.enter)="addComment(comment.value); comment.value='' "
+               id="comment"
+               class="form-control">
+      </div>
+      <button class="col btn-primary btn"
+              (click)="addComment(comment.value); comment.value=''">Post
+      </button>
+    </div>
+  
+      <!-- Display comments here -->
+    <div class="row container">
+      <div class="container">
+        <ul class="list-group list-group-flush" style="margin: 20px;">
+          <li class="list-group-item" *ngFor="let comment of anime.comments">
+            {{ comment }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>

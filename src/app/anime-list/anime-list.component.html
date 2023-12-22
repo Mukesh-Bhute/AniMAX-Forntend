@@ -1,0 +1,11 @@
+<div class="container-fluid"  >
+    <div class="col">
+      <div class="row animeCard">
+        <app-anime-card class="col-md-2 p-2"
+                        *ngFor="let anime of animes;index as animeId"
+                        [anime]='anime'
+                        [animeId] = animeId>
+        </app-anime-card>
+      </div>
+    </div>
+  </div>

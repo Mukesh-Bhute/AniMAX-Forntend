@@ -1,0 +1,14 @@
+<div class="card" style="width: 14rem; margin:10px;  box-shadow: 0 4px 8px 0 rgba(254, 136, 136, 0.597), 0 6px 20px 0 rgba(255, 122, 122, 0.483)">
+    <img [src]="anime.iconUrl" class="card-img-top" alt="..." style="height: 200px; ">
+    <div class="card-body" style = "background-color:rgb(10, 1, 42) ; ">
+      <p class="card-text" style="color:aliceblue;">{{ anime.name }} </p>
+      <button
+              [routerLink]="['/anime', animeId]"
+              type="button"
+              class="btn btn-success btn-sm"
+              style="margin: auto;">
+      View more!
+      </button>
+    </div>
+</div>
+
